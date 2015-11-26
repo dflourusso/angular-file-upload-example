@@ -15,6 +15,8 @@ class DocsController < ApplicationController
   # GET /docs/new
   def new
     @doc = Doc.new
+    @doc.anexos.build
+    @doc
   end
 
   # GET /docs/1/edit
@@ -69,6 +71,6 @@ class DocsController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def doc_params
-      params.require(:doc).permit(:nome)
+      params.require(:doc).permit(:nome, anexos: [:data])
     end
 end

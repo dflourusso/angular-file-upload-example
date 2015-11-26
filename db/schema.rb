@@ -15,13 +15,13 @@ ActiveRecord::Schema.define(version: 20151126114115) do
 
   create_table "anexos", force: :cascade do |t|
     t.string   "data"
-    t.integer  "anexo_id"
-    t.string   "anexo_type"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
+    t.integer  "anexavel_id"
+    t.string   "anexavel_type"
+    t.datetime "created_at",    null: false
+    t.datetime "updated_at",    null: false
   end
 
-  add_index "anexos", ["anexo_type", "anexo_id"], name: "index_anexos_on_anexo_type_and_anexo_id"
+  add_index "anexos", ["anexavel_type", "anexavel_id"], name: "index_anexos_on_anexavel_type_and_anexavel_id"
 
   create_table "docs", force: :cascade do |t|
     t.string   "nome"

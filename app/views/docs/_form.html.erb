@@ -1,4 +1,5 @@
-<%= form_for(@doc) do |f| %>
+<%= @doc.as_json(include: :anexos) %>
+<%= form_for @doc, html: { multipart: true } do |f| %>
   <% if @doc.errors.any? %>
     <div id="error_explanation">
       <h2><%= pluralize(@doc.errors.count, "error") %> prohibited this doc from being saved:</h2>
@@ -15,6 +16,11 @@
     <%= f.label :nome %><br>
     <%= f.text_field :nome %>
   </div>
+
+  <%= f.fields_for :anexos do |a| %>
+    <%= a.file_field :data %>
+  <% end %>
+
   <div class="actions">
     <%= f.submit %>
   </div>

@@ -11,4 +11,6 @@
 #
 
 class Anexo < ActiveRecord::Base
+  belongs_to :anexavel, :polymorphic => true
+  # has_attached_file :data, :your_paperclip_options
 end

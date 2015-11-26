@@ -9,4 +9,8 @@
 #
 
 class Doc < ActiveRecord::Base
+  has_many :anexos, as: :anexavel
+  accepts_nested_attributes_for :anexos
+
+  validates :nome, presence: true
 end
