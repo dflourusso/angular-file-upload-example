@@ -10,6 +10,8 @@
 #  updated_at    :datetime         not null
 #
 
+
 class Anexo < ActiveRecord::Base
   belongs_to :anexavel, polymorphic: true
+  mount_uploader :file, AnexoUploader
 end

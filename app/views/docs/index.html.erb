@@ -6,6 +6,7 @@
   <thead>
     <tr>
       <th>Nome</th>
+      <th>Anexos</th>
       <th colspan="3"></th>
     </tr>
   </thead>
@@ -14,6 +15,7 @@
     <% @docs.each do |doc| %>
       <tr>
         <td><%= doc.nome %></td>
+        <td><%= image_tag(doc.anexos.first.file_url) %></td>
         <td><%= link_to 'Show', doc %></td>
         <td><%= link_to 'Edit', edit_doc_path(doc) %></td>
         <td><%= link_to 'Destroy', doc, method: :delete, data: { confirm: 'Are you sure?' } %></td>
