@@ -33,6 +33,7 @@ class DocsController < ApplicationController
         format.html { redirect_to @doc, notice: 'Doc was successfully created.' }
         format.json { render :show, status: :created, location: @doc }
       else
+        @doc.anexos.build
         format.html { render :new }
         format.json { render json: @doc.errors, status: :unprocessable_entity }
       end
