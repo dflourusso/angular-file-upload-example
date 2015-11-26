@@ -14,7 +14,7 @@
 ActiveRecord::Schema.define(version: 20151126114115) do
 
   create_table "anexos", force: :cascade do |t|
-    t.string   "data"
+    t.string   "file"
     t.integer  "anexavel_id"
     t.string   "anexavel_type"
     t.datetime "created_at",    null: false

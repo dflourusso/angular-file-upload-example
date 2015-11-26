@@ -9,7 +9,7 @@
 #
 
 class Doc < ActiveRecord::Base
-  has_many :anexos, as: :anexavel
+  has_many :anexos, as: :anexavel, dependent: :destroy
   accepts_nested_attributes_for :anexos
 
   validates :nome, presence: true
