@@ -1,0 +1,2 @@
+module AngularDocsHelper
+end

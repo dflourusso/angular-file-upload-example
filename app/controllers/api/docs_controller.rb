@@ -1,27 +1,27 @@
-class DocsController < ApplicationController
+class Api::DocsController < ApplicationController
   before_action :set_doc, only: [:show, :edit, :update, :destroy]
 
   # GET /docs
   # GET /docs.json
   def index
-    @docs = Doc.all
+    render json: @docs = Doc.all.as_json(include: :anexos)
   end
 
   # GET /docs/1
   # GET /docs/1.json
   def show
+    render json: @doc
   end
 
   # GET /docs/new
   def new
     @doc = Doc.new
-    @doc.anexos.build
-    @doc.anexos.build
-    @doc
+    render json: @doc.as_json(include: :anexos)
   end
 
   # GET /docs/1/edit
   def edit
+    render json: @doc
   end
 
   # POST /docs
@@ -29,15 +29,10 @@ class DocsController < ApplicationController
   def create
     @doc = Doc.new(doc_params)
 
-    respond_to do |format|
-      if @doc.save
-        format.html { redirect_to @doc, notice: 'Doc was successfully created.' }
-        format.json { render :show, status: :created, location: @doc }
-      else
-        @doc.anexos.build
-        format.html { render :new }
-        format.json { render json: @doc.errors, status: :unprocessable_entity }
-      end
+    if @doc.save
+      render json: @doc
+    else
+      render json: @doc.errors, status: :unprocessable_entity
     end
   end
 
@@ -59,10 +54,8 @@ class DocsController < ApplicationController
   # DELETE /docs/1.json
   def destroy
     @doc.destroy
-    respond_to do |format|
-      format.html { redirect_to docs_url, notice: 'Doc was successfully destroyed.' }
-      format.json { head :no_content }
-    end
+
+    head :no_content
   end
 
   private
@@ -73,6 +66,8 @@ class DocsController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def doc_params
-      params.require(:doc).permit(:nome, anexos_attributes: [:file])
+      p = params.permit(:nome, anexos: [:file])
+      p[:anexos_attributes] = p.delete :anexos if p[:anexos]
+      p
     end
 end

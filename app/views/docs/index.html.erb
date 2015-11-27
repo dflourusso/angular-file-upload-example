@@ -15,7 +15,11 @@
     <% @docs.each do |doc| %>
       <tr>
         <td><%= doc.nome %></td>
-        <td><%= image_tag(doc.anexos.first.file_url) %></td>
+        <td>
+          <% doc.anexos.each do |a| %>
+            <%= image_tag(a.file_url, width: 100) %>
+          <% end %>
+        </td>
         <td><%= link_to 'Show', doc %></td>
         <td><%= link_to 'Edit', edit_doc_path(doc) %></td>
         <td><%= link_to 'Destroy', doc, method: :delete, data: { confirm: 'Are you sure?' } %></td>

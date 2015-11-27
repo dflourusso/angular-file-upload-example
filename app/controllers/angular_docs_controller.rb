@@ -1,0 +1,2 @@
+class AngularDocsController < ApplicationController
+end

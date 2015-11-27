@@ -1,0 +1,21 @@
+<div ng-app='app'>
+  <div ng-controller='uploadCtrl'>
+    <h2>Exemplo de post com upload de arquivo usando AngularJS + Restangular</h2>
+    <form ng-submit='upload()'>
+      <input name="nome" ng-model="doc.nome">
+      <input name="file" type="file" ngf-select="pushFile($files)">
+      <br>
+      <button>Upload</button>
+    </form>
+    <hr>
+    <ul>
+      <li ng-repeat='d in docs'>
+        <button type="button" ng-click='destroy(d)'>Excluir</button>
+        {{d.nome}}
+        <br>
+        <img ng-repeat='i in d.anexos' ng-src="{{i.file.url}}" width="100px;">
+        <hr>
+      </li>
+    </ul>
+  </div>
+</div>
