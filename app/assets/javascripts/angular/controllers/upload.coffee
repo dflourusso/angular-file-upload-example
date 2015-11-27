@@ -37,7 +37,7 @@ app.controller 'uploadCtrl', ($scope, Upload, Restangular) ->
           formKey = namespace + "[" + property + "]"
         else
           formKey = property
-        if typeof obj[property] is "object" and !(obj[property] instanceof File)
+        if typeof obj[property] is "object" and !(obj[property] instanceof File) and !(obj[property] instanceof Date)
           objectToFormData obj[property], fd, formKey
         else
           fd.append formKey, obj[property] unless angular.isFunction(obj[property])
